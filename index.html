@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>24×7 Ambulance Service | Book Ambulance</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    /* HEADER */
+    header {
+      background: #d90000;
+      color: white;
+      padding: 14px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 520px;
+      padding: 70px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      background: linear-gradient(135deg, #fff, #ffe9e9);
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      line-height: 1.1;
+      color: #b00000;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .call {
+      background: #d90000;
+      color: white;
+    }
+
+    .whatsapp {
+      background: #18b957;
+      color: white;
+    }
+
+    .book {
+      background: #111;
+      color: white;
+    }
+
+    .ambulance-icon {
+      font-size: 170px;
+      text-align: center;
+    }
+
+    /* FEATURES */
+    .section {
+      padding: 60px 6%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 35px;
+      color: #b00000;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px 20px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    .card .icon {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* BOOKING */
+    .booking {
+      background: white;
+      max-width: 850px;
+      margin: auto;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0,0,0,.1);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #d90000;
+    }
+
+    .submit {
+      width: 100%;
+      margin-top: 20px;
+      background: #d90000;
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: #111;
+      color: white;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      margin-bottom: 15px;
+    }
+
+    .contact-number {
+      font-size: 28px;
+      margin: 12px 0 25px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #d90000;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    /* FLOATING BUTTONS */
+    .floating {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .floating a {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,.25);
+    }
+
+    .float-call {
+      background: #d90000;
+    }
+
+    .float-wa {
+      background: #18b957;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      nav a {
+        margin: 0 7px;
+        font-size: 14px;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 45px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .ambulance-icon {
+        font-size: 110px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .booking {
+        padding: 20px;
+      }
+
+      .section {
+        padding: 45px 5%;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">🚑 24×7 Ambulance</div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Book</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+      <h1>24×7 Ambulance Service</h1>
+
+      <p>
+        Fast, reliable and professional ambulance service.
+        Book an ambulance anytime, anywhere.
+      </p>
+
+      <div class="buttons">
+
+        <a class="btn call" href="tel:+919334017552">
+          📞 Call Now
+        </a>
+
+        <a class="btn whatsapp"
+           href="https://wa.me/919798077989"
+           target="_blank">
+          💬 WhatsApp
+        </a>
+
+        <a class="btn book" href="#booking">
+          🚑 Book Ambulance
+        </a>
+
+      </div>
+    </div>
+
+    <div class="ambulance-icon">
+      🚑
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+
+    <h2 class="section-title">Our Services</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">🚑</div>
+        <h3>24×7 Ambulance</h3>
+        <p>Emergency ambulance service available day and night.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🛏️</div>
+        <h3>Stretcher</h3>
+        <p>Stretcher facility available on request.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🏥</div>
+        <h3>Hospital Transfer</h3>
+        <p>Safe transportation between hospitals and locations.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📍</div>
+        <h3>Pickup Service</h3>
+        <p>Pickup and drop service based on your booking.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BOOKING -->
+  <section class="section" id="booking">
+
+    <h2 class="section-title">Book an Ambulance</h2>
+
+    <div class="booking">
+
+      <form id="bookingForm">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Patient Name</label>
+            <input
+              type="text"
+              id="patientName"
+              placeholder="Enter patient name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Contact Number</label>
+            <input
+              type="tel"
+              id="customerPhone"
+              placeholder="Enter phone number"
+              required
+            />
+          </div>
+
+          <div class="form-group full">
+            <label>Pickup Location</label>
+            <input
+              type="text"
+              id="pickup"
+              placeholder="Enter pickup location"
+              required
+            />
+          </div>
+
+          <div class="form-group full">
+            <label>Destination / Hospital</label>
+            <input
+              type="text"
+              id="destination"
+              placeholder="Enter hospital or destination"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Ambulance Type</label>
+
+            <select id="ambulanceType">
+              <option>Basic Ambulance</option>
+              <option>Oxygen Ambulance</option>
+              <option>ICU Ambulance</option>
+              <option>Patient Transport</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Stretcher Required?</label>
+
+            <select id="stretcher">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Payment Method</label>
+
+            <select id="payment">
+              <option>Cash</option>
+              <option>Online Payment</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Booking Time</label>
+
+            <input
+              type="datetime-local"
+              id="bookingTime"
+              required
+            />
+          </div>
+
+          <div class="form-group full">
+            <label>Additional Message</label>
+
+            <textarea
+              id="message"
+              placeholder="Any emergency information..."
+            ></textarea>
+          </div>
+
+        </div>
+
+        <button class="submit" type="submit">
+          🚑 Confirm Booking on WhatsApp
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+
+    <div class="contact-box">
+
+      <h2>Need an Ambulance?</h2>
+
+      <p>Call us anytime — 24×7 emergency service.</p>
+
+      <div class="contact-number">
+        📞 +91 9334017552
+      </div>
+
+      <div class="buttons" style="justify-content:center;">
+
+        <a
+          class="btn call"
+          href="tel:+919334017552">
+          📞 Call Now
+        </a>
+
+        <a
+          class="btn whatsapp"
+          href="https://wa.me/919798077989"
+          target="_blank">
+          💬 WhatsApp Us
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 24×7 Ambulance Service. All Rights Reserved.
+  </footer>
+
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating">
+
+    <a
+      class="float-call"
+      href="tel:+919334017552"
+      title="Call">
+      📞
+    </a>
+
+    <a
+      class="float-wa"
+      href="https://wa.me/919798077989"
+      target="_blank"
+      title="WhatsApp">
+      💬
+    </a>
+
+  </div>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    const bookingForm =
+      document.getElementById("bookingForm");
+
+    bookingForm.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const patientName =
+        document.getElementById("patientName").value;
+
+      const customerPhone =
+        document.getElementById("customerPhone").value;
+
+      const pickup =
+        document.getElementById("pickup").value;
+
+      const destination =
+        document.getElementById("destination").value;
+
+      const ambulanceType =
+        document.getElementById("ambulanceType").value;
+
+      const stretcher =
+        document.getElementById("stretcher").value;
+
+      const payment =
+        document.getElementById("payment").value;
+
+      const bookingTime =
+        document.getElementById("bookingTime").value;
+
+      const message =
+        document.getElementById("message").value;
+
+
+      const whatsappMessage =
+`🚑 *NEW AMBULANCE BOOKING*
+
+👤 Patient: ${patientName}
+
+📱 Customer Phone:
+${customerPhone}
+
+📍 Pickup:
+${pickup}
+
+🏥 Destination:
+${destination}
+
+🚑 Ambulance:
+${ambulanceType}
+
+🛏️ Stretcher:
+${stretcher}
+
+💳 Payment:
+${payment}
+
+⏰ Booking Time:
+${bookingTime}
+
+📝 Message:
+${message}`;
+
+
+      const whatsappURL =
+        "https://wa.me/919798077989?text=" +
+        encodeURIComponent(whatsappMessage);
+
+      window.open(whatsappURL, "_blank");
+
+    });
+
+  </script>
+
+</body>
+</html>
